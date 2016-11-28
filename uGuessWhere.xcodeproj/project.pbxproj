@@ -35,6 +35,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07362F421DECCCFD00CFE155 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0765D46E1DECC90C00401C78 /* LaunchScreen.storyboard */,
+				0765D4691DECC90C00401C78 /* Main.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		07362F431DECCD1500CFE155 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0765D4671DECC90C00401C78 /* ViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		07362F441DECCD2700CFE155 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		07362F451DECCD2F00CFE155 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0765D4651DECC90C00401C78 /* AppDelegate.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
 		0765D4591DECC90B00401C78 = {
 			isa = PBXGroup;
 			children = (
@@ -54,11 +86,11 @@
 		0765D4641DECC90C00401C78 /* uGuessWhere */ = {
 			isa = PBXGroup;
 			children = (
-				0765D4651DECC90C00401C78 /* AppDelegate.swift */,
-				0765D4671DECC90C00401C78 /* ViewController.swift */,
-				0765D4691DECC90C00401C78 /* Main.storyboard */,
+				07362F451DECCD2F00CFE155 /* Services */,
+				07362F441DECCD2700CFE155 /* Models */,
+				07362F431DECCD1500CFE155 /* Controllers */,
+				07362F421DECCCFD00CFE155 /* Views */,
 				0765D46C1DECC90C00401C78 /* Assets.xcassets */,
-				0765D46E1DECC90C00401C78 /* LaunchScreen.storyboard */,
 				0765D4711DECC90C00401C78 /* Info.plist */,
 			);
 			path = uGuessWhere;
@@ -302,6 +334,7 @@
 				0765D4761DECC90C00401C78 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

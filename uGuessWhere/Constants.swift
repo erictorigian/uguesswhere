@@ -21,7 +21,7 @@ let KEY_AVAILABLE_GAMES_CELL = "gamesCell"
 
 //Segues
 let SEGUE_LOGGED_IN = "loggedIn"
-let SEGUE_SHOW_LANDMARK_DETAIL = "showLandmarkDetail"
+let SEGUE_SHOW_GAME_DETAIL = "showGameDetail"
 let SEGUE_SHOW_PROFILE = "showProfile"
 let SEGUE_SHOW_AVAILABLE_GAMES = "showAvailableGames"
 

@@ -15,6 +15,7 @@ class GameListCell: UITableViewCell {
 	@IBOutlet weak var gameOwnerLabel: UILabel!
 	@IBOutlet weak var gameStartTimeLabel: UILabel!
 	@IBOutlet weak var numberOfGuessesLabel: UILabel!
+    @IBOutlet weak var solvedLabel: UILabel!
 	
 	
     override func awakeFromNib() {
@@ -27,9 +28,11 @@ class GameListCell: UITableViewCell {
 		self.gameOwnerLabel.text = game.gameOwner
 		self.numberOfGuessesLabel.text = String(game.numberOfGuesses)
 		self.gameStartTimeLabel.text = game.gameStartTime
-		if game.gameSolved {
-			backgroundColor = UIColor.blue
-		}
+		if game.gameStatus == "solved" {
+           solvedLabel.isHidden = false
+        } else {
+            solvedLabel.isHidden = true
+        }
 	}
 	
 }

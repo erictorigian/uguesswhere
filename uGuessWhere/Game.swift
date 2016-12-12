@@ -15,7 +15,7 @@ class Game {
 	private var _gameOwner: String
 	private var _gameStartTime: Double
 	private var _numberOfGuesses: Int
-	private var _gameSolved: Bool
+	private var _gameStatus: String
 	
 	//MARK: - getter/setters
 	var gameName: String {
@@ -37,8 +37,8 @@ class Game {
 		return _numberOfGuesses
 	}
 	
-	var gameSolved: Bool {
-		return _gameSolved
+	var gameStatus: String {
+		return _gameStatus
 	}
 	
 	//MARK: - Initalizers
@@ -47,8 +47,10 @@ class Game {
 		self._gameOwner = (snapshot.value as? NSDictionary)?["gameOwner"] as! String
 		self._gameStartTime = (snapshot.value as? NSDictionary)?["gameStartTime"] as! Double
 		self._numberOfGuesses = (snapshot.value as? NSDictionary)?["numberOfGuesses"] as! Int
-		self._gameSolved = (snapshot.value as? NSDictionary)?["gameSolved"] as! Bool
+		self._gameStatus = (snapshot.value as? NSDictionary)?["gameStatus"] as! String
 	}
+    
+    
 	
 	
 }

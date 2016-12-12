@@ -58,5 +58,14 @@ class GameListTableViewController: UIViewController, UITableViewDelegate, UITabl
 		}
 
 	}
+    
+    //MARK: - segue override
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == SEGUE_SHOW_GAME_DETAIL {
+            let destinationVC = segue.destination as! GameDetailViewController
+            let indexPath = tableView.indexPathForSelectedRow!
+            destinationVC.game = availableGames[indexPath.row]
+        }
+    }
 	
 }

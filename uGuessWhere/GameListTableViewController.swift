@@ -59,6 +59,10 @@ class GameListTableViewController: UIViewController, UITableViewDelegate, UITabl
 
 	}
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
     //MARK: - segue override
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SEGUE_SHOW_GAME_DETAIL {

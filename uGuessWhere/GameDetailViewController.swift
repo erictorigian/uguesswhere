@@ -12,13 +12,13 @@ class GameDetailViewController: UIViewController {
 
     var game: Game!
     
-    @IBOutlet weak var gameNameLabel: UILabel!
+    @IBOutlet weak var gameNameLabel: UINavigationItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print("detail: \(game)")
-        gameNameLabel.text = game.gameName
+        gameNameLabel.title = game.gameName
     }
 
 }

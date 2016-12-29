@@ -21,8 +21,11 @@ class DataService {
 	//Firebase References
 	private var _REF_BASE = DB_BASE
 	private var _REF_USERS = DB_BASE.child("users")
-    private var _REF_GAMES = DB_BASE.child("games")
+	private var _REF_GAMES = DB_BASE.child("games")
 	private var _REF_PLACE_IMAGE_STORAGE = STORAGE_BASE.child("placeImages")
+	
+	//class variable for save to database function
+	var imageURL: String!
 	
 	//Public Getter
 	var REF_BASE: FIRDatabaseReference {
@@ -32,10 +35,10 @@ class DataService {
 	var REF_USERS: FIRDatabaseReference {
 		return _REF_USERS
 	}
-    
-    var REF_GAMES: FIRDatabaseReference {
-        return _REF_GAMES
-    }
+	
+	var REF_GAMES: FIRDatabaseReference {
+		return _REF_GAMES
+	}
 	
 	var REF_PLACE_IMAGE_STORAGE: FIRStorageReference {
 		return _REF_PLACE_IMAGE_STORAGE
@@ -46,7 +49,7 @@ class DataService {
 	func createFirebaseDBUser(uid: String, userData: Dictionary<String, String> ) {
 		REF_USERS.child(uid).updateChildValues(userData)
 	}
-
 	
+		
 	
 }

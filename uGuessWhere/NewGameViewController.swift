@@ -17,6 +17,7 @@ class NewGameViewController: UIViewController, UIImagePickerControllerDelegate, 
 	var image1Selected = false
 	var image2Selected = false
 	var image3Selected = false
+	var gameRef: FIRDatabaseReference!
 	var game: Game!
 	
 	@IBOutlet weak var image1View: UIImageView!
@@ -51,29 +52,79 @@ class NewGameViewController: UIViewController, UIImagePickerControllerDelegate, 
 			return
 		}
 		
-		if let imgData = UIImageJPEGRepresentation(image1, 0.2) {
+		
+		//prepare first image and push to storage
+		if let imageData = UIImageJPEGRepresentation(image1, 0.2) {
 			let imageUID = NSUUID().uuidString
-			let metaData = FIRStorageMetadata()
-			metaData.contentType = "image/jpg"
+			let imageMetadata = FIRStorageMetadata()
+			imageMetadata.contentType = "image/jpg"
 			
-			DataService.ds.REF_PLACE_IMAGE_STORAGE.child(imageUID).put(imgData, metadata: metaData) { (metadata, error) in
+			DataService.ds.REF_PLACE_IMAGE_STORAGE.child(imageUID).put(imageData, metadata: imageMetadata) { (metadata, error) in
 				if let error = error {
-					self.showErrorAlert("error uploading image", msg: error.localizedDescription)
+					print("error uploading image \(error.localizedDescription)")
 				} else {
-					let image1URL = metadata?.downloadURL()?.absoluteString
-					
-					let gameRef = DataService.ds.REF_GAMES.childByAutoId()
+					//save game with first image
+					let imageURL = metadata?.downloadURL()?.absoluteString
+					self.gameRef = DataService.ds.REF_GAMES.childByAutoId()
 					let gameStartTime = NSTimeIntervalSince1970
 					
-					let game = Game(gameName: gameName, gameOwner: self.username, gameStartTime: gameStartTime)
+					let game = Game(gameName: gameName,
+					                gameOwner: self.username,
+					                gameStartTime: gameStartTime,
+					                image1URL: imageURL!,
+					                image2URL: "none",
+					                image3URL: "none")
 					
-					gameRef.setValue(game.toAnyObject())
-					
-					_ = self.navigationController?.popToRootViewController(animated: true)
+					self.gameRef.setValue(game.toAnyObject())
 					
 				}
 			}
 		}
+		
+		//if there is an image2 save and append the url
+		if image2Selected == true {
+			if let imageData = UIImageJPEGRepresentation(self.image2View.image!, 0.2) {
+				let imageUID = NSUUID().uuidString
+				let imageMetadata = FIRStorageMetadata()
+				imageMetadata.contentType = "image/jpg"
+				
+				DataService.ds.REF_PLACE_IMAGE_STORAGE.child(imageUID).put(imageData, metadata: imageMetadata) { (metadata, error) in
+					if let error = error {
+						print("error uploading image \(error.localizedDescription)")
+					} else {
+						let imageURL = metadata?.downloadURL()?.absoluteString
+						let updateValues = ["photo2": imageURL]
+						self.gameRef.updateChildValues(updateValues)
+					}
+					
+				}
+			}
+			
+		}
+		
+		//if there is an image3 save and append the url
+		if image2Selected == true {
+			if let imageData = UIImageJPEGRepresentation(self.image3View.image!, 0.2) {
+				let imageUID = NSUUID().uuidString
+				let imageMetadata = FIRStorageMetadata()
+				imageMetadata.contentType = "image/jpg"
+				
+				DataService.ds.REF_PLACE_IMAGE_STORAGE.child(imageUID).put(imageData, metadata: imageMetadata) { (metadata, error) in
+					if let error = error {
+						print("error uploading image \(error.localizedDescription)")
+					} else {
+						let imageURL = metadata?.downloadURL()?.absoluteString
+						let updateValues = ["photo3": imageURL]
+						self.gameRef.updateChildValues(updateValues)
+					}
+					
+				}
+			}
+			
+		}
+		
+		_ = self.navigationController?.popToRootViewController(animated: true)
+		
 	}
 	
 	@IBAction func imageTapped(_ sender: UITapGestureRecognizer) {
@@ -132,17 +183,14 @@ class NewGameViewController: UIViewController, UIImagePickerControllerDelegate, 
 			case 1:
 				self.image1Selected = true
 				self.image1View.image = pickedImage
-				print("image 1")
 				
 			case 2:
-				self.image1Selected = true
+				self.image2Selected = true
 				self.image2View.image = pickedImage
-				print("image 2")
 				
 			case 3:
-				self.image1Selected = true
+				self.image3Selected = true
 				self.image3View.image = pickedImage
-				print("image 3")
 				
 			default:
 				print("default")

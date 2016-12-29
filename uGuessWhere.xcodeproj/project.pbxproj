@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		072863D21E14ADB30049D249 /* NewGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072863D11E14ADB30049D249 /* NewGameViewController.swift */; };
 		07362F471DECCF0900CFE155 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07362F461DECCF0900CFE155 /* GoogleService-Info.plist */; };
 		075F2A0F1DF1EF5D00B23390 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075F2A0E1DF1EF5D00B23390 /* Constants.swift */; };
 		075F2A111DF1F01000B23390 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075F2A101DF1F01000B23390 /* SignInViewController.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		072863D11E14ADB30049D249 /* NewGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameViewController.swift; sourceTree = "<group>"; };
 		07362F461DECCF0900CFE155 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		075F2A0E1DF1EF5D00B23390 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		075F2A101DF1F01000B23390 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				075F2A171DF1F89F00B23390 /* SettingsViewController.swift */,
 				075F2A191DF207F000B23390 /* GameListTableViewController.swift */,
 				078962BE1DFA63D100939AE0 /* GameDetailViewController.swift */,
+				072863D11E14ADB30049D249 /* NewGameViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -182,7 +185,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Eric Torigian";
 				TargetAttributes = {
 					0765D4611DECC90B00401C78 = {
@@ -288,6 +291,7 @@
 				0765D4681DECC90C00401C78 /* ViewController.swift in Sources */,
 				075F2A181DF1F89F00B23390 /* SettingsViewController.swift in Sources */,
 				075F2A1A1DF207F000B23390 /* GameListTableViewController.swift in Sources */,
+				072863D21E14ADB30049D249 /* NewGameViewController.swift in Sources */,
 				0765D4661DECC90C00401C78 /* AppDelegate.swift in Sources */,
 				078962BF1DFA63D100939AE0 /* GameDetailViewController.swift in Sources */,
 				075F2A151DF1F09700B23390 /* DataService.swift in Sources */,

@@ -342,9 +342,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New Game" id="bep-OS-H4f">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Z1E-TG-Idq"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Z1E-TG-Idq">
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="pif-2V-3fi" id="LHe-mh-55C"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="gameNameLabel" destination="0EC-J8-dty" id="pY6-yI-wEJ"/>
                         <outlet property="image1View" destination="etZ-z5-gGL" id="eJ5-Zx-TDA"/>
                         <outlet property="image2View" destination="3zf-hf-UbR" id="eWo-37-XYI"/>
                         <outlet property="image3View" destination="xdN-dY-OBG" id="ebd-vf-vLr"/>

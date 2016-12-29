@@ -8,6 +8,10 @@
 
 import UIKit
 import Firebase
+import SwiftKeychainWrapper
+
+//global variable UID
+let uid = KeychainWrapper.standard.string(forKey: KEY_UID)!
 
 class GameListTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 

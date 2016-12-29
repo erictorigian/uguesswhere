@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import Firebase
 
 class NewGameViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 	
 	var pickerController: UIImagePickerController!
+	var username = ""
 	var imageSelected = 1
 	var image1Selected = false
 	var image2Selected = false
@@ -20,6 +22,7 @@ class NewGameViewController: UIViewController, UIImagePickerControllerDelegate, 
 	@IBOutlet weak var image1View: UIImageView!
 	@IBOutlet weak var image2View: UIImageView!
 	@IBOutlet weak var image3View: UIImageView!
+	@IBOutlet weak var gameNameLabel: UITextField!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -28,7 +31,49 @@ class NewGameViewController: UIViewController, UIImagePickerControllerDelegate, 
 		pickerController.allowsEditing = true
 		pickerController.delegate = self
 		
+		DataService.ds.REF_USERS.child(uid).observeSingleEvent(of: .value, with: {(snapshot) in
+			let value = snapshot.value as? NSDictionary
+			self.username = value?["username"] as! String })
 		
+		
+	}
+	
+	//MARK: - IBActions
+	
+	@IBAction func saveButtonPressed(_ sender: Any) {
+		guard let gameName = gameNameLabel.text, gameName != "" else {
+			self.showErrorAlert("Save Game Error", msg: "Every game needs a name")
+			return
+		}
+		
+		guard let image1 = image1View.image, image1Selected == true else {
+			self.showErrorAlert("Save Game Error", msg: "Every game needs at least one image")
+			return
+		}
+		
+		if let imgData = UIImageJPEGRepresentation(image1, 0.2) {
+			let imageUID = NSUUID().uuidString
+			let metaData = FIRStorageMetadata()
+			metaData.contentType = "image/jpg"
+			
+			DataService.ds.REF_PLACE_IMAGE_STORAGE.child(imageUID).put(imgData, metadata: metaData) { (metadata, error) in
+				if let error = error {
+					self.showErrorAlert("error uploading image", msg: error.localizedDescription)
+				} else {
+					let image1URL = metadata?.downloadURL()?.absoluteString
+					
+					let gameRef = DataService.ds.REF_GAMES.childByAutoId()
+					let gameStartTime = NSTimeIntervalSince1970
+					
+					let game = Game(gameName: gameName, gameOwner: self.username, gameStartTime: gameStartTime)
+					
+					gameRef.setValue(game.toAnyObject())
+					
+					_ = self.navigationController?.popToRootViewController(animated: true)
+					
+				}
+			}
+		}
 	}
 	
 	@IBAction func imageTapped(_ sender: UITapGestureRecognizer) {
@@ -112,5 +157,12 @@ class NewGameViewController: UIViewController, UIImagePickerControllerDelegate, 
 		
 	}
 	
-	
+	//MARK: - support functions
+	func showErrorAlert(_ title: String, msg: String) {
+		let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert )
+		let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+		alert.addAction(action)
+		present(alert, animated: true, completion: nil)
+	}
 }
+

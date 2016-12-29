@@ -16,6 +16,7 @@ class Game {
 	private var _gameStartTime: Double
 	private var _numberOfGuesses: Int
 	private var _gameStatus: String
+
 	
 	//MARK: - getter/setters
 	var gameName: String {
@@ -49,8 +50,26 @@ class Game {
 		self._numberOfGuesses = (snapshot.value as? NSDictionary)?["numberOfGuesses"] as! Int
 		self._gameStatus = (snapshot.value as? NSDictionary)?["gameStatus"] as! String
 	}
-    
-    
+	
+	init(gameName: String, gameOwner: String, gameStartTime: Double) {
+		self._gameName = gameName
+		self._gameOwner = gameOwner
+		self._gameStartTime = gameStartTime
+		self._gameStatus = "new"
+		self._numberOfGuesses = 0
+	}
+	
+	//MARK: - convert functions
+	func toAnyObject() -> [String: AnyObject] {
+		var gameDict: [String: AnyObject]
+		gameDict = ["gameName": _gameName as AnyObject, "gameOwner": _gameOwner as AnyObject,
+		            "gameStartTime": _gameStartTime as AnyObject, "numberOfGuesses": _numberOfGuesses as AnyObject,
+					"gameStatus": _gameStatus as AnyObject]
+		
+		return gameDict as [String : AnyObject]
+	}
+
+	
 	
 	
 }

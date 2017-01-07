@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class GameDetailViewController: UIViewController {
-
+    
     var game: Game!
     
     @IBOutlet weak var gameNameLabel: UINavigationItem!
@@ -22,7 +22,7 @@ class GameDetailViewController: UIViewController {
     @IBOutlet weak var photo1View: UIImageView!
     @IBOutlet weak var photo2View: UIImageView!
     @IBOutlet weak var photo3View: UIImageView!
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,8 +44,9 @@ class GameDetailViewController: UIViewController {
         default:
             difficultyLevelLabel.text = "Hard"
             difficultyLevelLabel.textColor = UIColor.red
-         }
+        }
         
+        //process images
         if let img = GameListTableViewController.imageCache.object(forKey: game.image1URL as NSString) {
             photo1View.image = img
         } else {
@@ -62,10 +63,49 @@ class GameDetailViewController: UIViewController {
                     }
                 }
             })
-            
+        }
+        
+        if game.image2URL != "none" {
+            if let img = GameListTableViewController.imageCache.object(forKey: game.image2URL as NSString) {
+                photo2View.image = img
+            } else {
+                let ref = FIRStorage.storage().reference(forURL: game.image2URL)
+                ref.data(withMaxSize: 2 * 1024 * 1024, completion: {(data, error) in
+                    if error != nil {
+                        print("snapDetails unable to download image: \(error?.localizedDescription)")
+                    } else {
+                        if let imgData = data {
+                            if let img = UIImage(data: imgData) {
+                                self.photo2View.image = img
+                                GameListTableViewController.imageCache.setObject(img, forKey: self.game.image2URL as NSString)
+                            }
+                        }
+                    }
+                })
+            }
             
         }
-
+    
+        if game.image3URL != "none" {
+            if let img = GameListTableViewController.imageCache.object(forKey: game.image3URL as NSString) {
+                photo3View.image = img
+            } else {
+                let ref = FIRStorage.storage().reference(forURL: game.image3URL)
+                ref.data(withMaxSize: 2 * 1024 * 1024, completion: {(data, error) in
+                    if error != nil {
+                        print("snapDetails unable to download image: \(error?.localizedDescription)")
+                    } else {
+                        if let imgData = data {
+                            if let img = UIImage(data: imgData) {
+                                self.photo3View.image = img
+                                GameListTableViewController.imageCache.setObject(img, forKey: self.game.image3URL as NSString)
+                            }
+                        }
+                    }
+                })
+            }
+            
+        }
     }
-
+    
 }

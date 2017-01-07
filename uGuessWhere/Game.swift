@@ -51,7 +51,7 @@ class Game {
 	}
 	
 	var image2URL: String {
-		return _image1URL
+		return _image2URL
 	}
 
 	var image3URL: String {

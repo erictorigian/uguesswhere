@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class GameDetailViewController: UIViewController {
 
@@ -18,6 +19,9 @@ class GameDetailViewController: UIViewController {
     @IBOutlet weak var numberOfGuessesLabel: UILabel!
     @IBOutlet weak var gameStatusLabel: UILabel!
     @IBOutlet weak var difficultyLevelLabel: UILabel!
+    @IBOutlet weak var photo1View: UIImageView!
+    @IBOutlet weak var photo2View: UIImageView!
+    @IBOutlet weak var photo3View: UIImageView!
 
     
     override func viewDidLoad() {
@@ -41,6 +45,27 @@ class GameDetailViewController: UIViewController {
             difficultyLevelLabel.text = "Hard"
             difficultyLevelLabel.textColor = UIColor.red
          }
+        
+        if let img = GameListTableViewController.imageCache.object(forKey: game.image1URL as NSString) {
+            photo1View.image = img
+        } else {
+            let ref = FIRStorage.storage().reference(forURL: game.image1URL)
+            ref.data(withMaxSize: 2 * 1024 * 1024, completion: {(data, error) in
+                if error != nil {
+                    print("snapDetails unable to download image: \(error?.localizedDescription)")
+                } else {
+                    if let imgData = data {
+                        if let img = UIImage(data: imgData) {
+                            self.photo1View.image = img
+                            GameListTableViewController.imageCache.setObject(img, forKey: self.game.image1URL as NSString)
+                        }
+                    }
+                }
+            })
+            
+            
+        }
+
     }
 
 }

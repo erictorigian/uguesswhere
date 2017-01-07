@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSCameraUsageDescription</key>
+	<string>uGuessWhere needs to access your camera</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>uGuessWhere needs to be able to access your location</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>uGuessWhere needs to be able to access your photos</string>
 	<key>CFBundleDevelopmentRegion</key>

@@ -22,6 +22,7 @@
 		0765D46D1DECC90C00401C78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0765D46C1DECC90C00401C78 /* Assets.xcassets */; };
 		0765D4701DECC90C00401C78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0765D46E1DECC90C00401C78 /* LaunchScreen.storyboard */; };
 		078962BF1DFA63D100939AE0 /* GameDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078962BE1DFA63D100939AE0 /* GameDetailViewController.swift */; };
+		07B06AD11E21144200939245 /* Landmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B06AD01E21144200939245 /* Landmark.swift */; };
 		07CED4EB1DF74B0B0074B57E /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CED4EA1DF74B0B0074B57E /* Game.swift */; };
 		AB06B31C4A153A14CE8397B8 /* Pods_uGuessWhere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B9EA01AEA762CA0778775BE /* Pods_uGuessWhere.framework */; };
 /* End PBXBuildFile section */
@@ -45,6 +46,7 @@
 		0765D46F1DECC90C00401C78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0765D4711DECC90C00401C78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		078962BE1DFA63D100939AE0 /* GameDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDetailViewController.swift; sourceTree = "<group>"; };
+		07B06AD01E21144200939245 /* Landmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Landmark.swift; sourceTree = "<group>"; };
 		07CED4EA1DF74B0B0074B57E /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		140FACFC7D0EA21EFA4A0E38 /* Pods-uGuessWhere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uGuessWhere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-uGuessWhere/Pods-uGuessWhere.debug.xcconfig"; sourceTree = "<group>"; };
 		1B9EA01AEA762CA0778775BE /* Pods_uGuessWhere.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_uGuessWhere.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				07CED4EA1DF74B0B0074B57E /* Game.swift */,
+				07B06AD01E21144200939245 /* Landmark.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07B06AD11E21144200939245 /* Landmark.swift in Sources */,
 				075F2A111DF1F01000B23390 /* SignInViewController.swift in Sources */,
 				07CED4EB1DF74B0B0074B57E /* Game.swift in Sources */,
 				0765D4681DECC90C00401C78 /* ViewController.swift in Sources */,

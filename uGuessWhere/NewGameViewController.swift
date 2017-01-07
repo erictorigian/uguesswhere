@@ -8,10 +8,14 @@
 
 import UIKit
 import Firebase
+import CoreLocation
 
-class NewGameViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class NewGameViewController: UIViewController, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 	
-	var pickerController: UIImagePickerController!
+	
+    let locationManager = CLLocationManager()
+    
+    var pickerController: UIImagePickerController!
 	var username = ""
 	var imageSelected = 1
 	var image1Selected = false
@@ -31,6 +35,13 @@ class NewGameViewController: UIViewController, UIImagePickerControllerDelegate, 
 		pickerController = UIImagePickerController()
 		pickerController.allowsEditing = true
 		pickerController.delegate = self
+        
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestLocation()
+        }
 		
 		DataService.ds.REF_USERS.child(uid).observeSingleEvent(of: .value, with: {(snapshot) in
 			let value = snapshot.value as? NSDictionary
@@ -212,5 +223,14 @@ class NewGameViewController: UIViewController, UIImagePickerControllerDelegate, 
 		alert.addAction(action)
 		present(alert, animated: true, completion: nil)
 	}
+    
+    //MARK: - corelocation delegate functions
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("did update location")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("corelocation did fail with error")
+    }
 }
 

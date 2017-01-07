@@ -15,6 +15,8 @@ let uid = KeychainWrapper.standard.string(forKey: KEY_UID)!
 
 class GameListTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    static var imageCache: NSCache<NSString, UIImage> = NSCache()
+
 	@IBOutlet var tableView: UITableView!
 	var availableGames = [Game]()
 	
